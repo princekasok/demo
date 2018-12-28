@@ -1,10 +1,10 @@
 # Demo School Mangement System
 
 ## Pre Requisites
-- MongoDB connectivity 
+- MongoDB connectivity
 
 ## Installation
-- Delete package-lock.json this will created for your system, When you finish installation
+
 
 ``` bash
 $ git clone git clone https://github.com/princekasok/demo.git
@@ -23,6 +23,10 @@ $ npm install
 ```bash
 $ node first-time-setup.js
 ```
+## Default credentials
+- Username : admin@test.co
+- Password : 12345
+
 ## Database connectivity
 - open dbConfig.json and edit the file
 
