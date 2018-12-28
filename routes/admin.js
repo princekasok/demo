@@ -25,9 +25,11 @@ router.get('/api/logout', function(req, res, next) {
 router.post('/api/home', function(req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
+  console.log(username)
   User.find({
-    username: username
+    username:username,password:'12345'
   }, (err, data) => {
+    console.log(data);
     if (data.length) {
       res.render('admin/home', {
         header: true,
