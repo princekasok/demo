@@ -19,7 +19,7 @@ router.get('/api/add_student', function(req, res, next) {
   res.render('admin/add_student');
 })
 router.get('/api/add_staff', function(req, res, next) {
-  res.render('admin/add_class');
+  res.render('admin/add_staff');
 })
 
 router.get('/api/logout', function(req, res, next) {
@@ -99,6 +99,10 @@ router.post('/admin/student/add', function(req, res, next) {
   studentObj.save(function(err, data) {
     if (err) {
       console.log(err);
+      res.render('admin/home', {
+        header: true,
+        'mytag': 'Unable to add student '
+      });
     }
     res.render('admin/home', {
       header: true,
@@ -109,11 +113,10 @@ router.post('/admin/student/add', function(req, res, next) {
 
 router.post('/admin/class/add', function(req, res, next) {
 
-
   let classObj = new Classes({
-    standard:req.body.standard,
-    noOfStudent:req.body.noOfStudent,
-    division:req.body.division,
+    standard: req.body.standard,
+    noOfStudent: req.body.noOfStudent,
+    division: req.body.division,
     createdAt: new Date(),
     updatedAt: new Date()
   });
@@ -136,12 +139,45 @@ router.post('/admin/class/add', function(req, res, next) {
   })
 })
 
+
+router.post('/admin/staff/add', function(req, res, next) {
+
+
+  let empObj = new Employee({
+    name: req.body.name,
+    age: req.body.name,
+    address: req.body.address,
+    sex: req.body.sex,
+    type: req.body.type,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  empObj.save(function(err, data) {
+    if (err) {
+      console.log(err);
+      res.render('admin/home', {
+        header: true,
+        'mytag': 'Unable to add Employee'
+      });
+    } else {
+      res.render('admin/home', {
+        header: true,
+        'mytag': 'Successfully Added Employee '
+      });
+
+    }
+
+  })
+})
+
+
 router.post('/api/home', function(req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
   User.find({
     username: username,
-    password: '12345'
+    password: password
   }, (err, data) => {
     if (data.length) {
       res.render('admin/home', {

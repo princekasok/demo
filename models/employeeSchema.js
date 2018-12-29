@@ -7,10 +7,11 @@ let connetionString ='mongodb://'+host+':'+port+'/'+database;
 
 let Schema = mongoose.Schema;
 let employeeSchema = new Schema({
-  name:String,
-  age:String,
-  sex:String,
-  type:String,
+  name: String,
+    age: String,
+    address: String,
+    sex: String,
+    type: String,
   createdAt: Date,
   updatedAt: Date
 
