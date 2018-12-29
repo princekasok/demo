@@ -12,6 +12,7 @@ $ cd demo
 $ sudo apt-get update
 $ sudo apt-get install nodejs
 $ sudo apt-get install npm
+$ npm i pm2 -g
 $ npm install
 
 ```
