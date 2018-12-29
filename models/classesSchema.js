@@ -7,7 +7,7 @@ let connetionString ='mongodb://'+host+':'+port+'/'+database;
 
 let Schema = mongoose.Schema;
 let classesSchema = new Schema({
-  name:String,
+  standard:String,
   noOfStudent:String,
   division:String,
   createdAt: Date,

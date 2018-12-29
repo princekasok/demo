@@ -28,51 +28,45 @@ router.get('/api/logout', function(req, res, next) {
 
 router.get('/admin/students/list', function(req, res, next) {
 
-Student.find({},(err,data)=>{
-  if(err)
-  {
-    console.log(err)
-  }
+  Student.find({}, (err, data) => {
+    if (err) {
+      console.log(err)
+    }
 
-  if(data.length){
-    res.end('Page under construction');
-  }
-  else {
-    res.end('list empty');
-  }
-});
+    if (data.length) {
+      res.end('Page under construction');
+    } else {
+      res.end('list empty');
+    }
+  });
 });
 router.get('/admin/employees/list', function(req, res, next) {
 
-Employee.find({},(err,data)=>{
-  if(err)
-  {
-    console.log(err)
-  }
+  Employee.find({}, (err, data) => {
+    if (err) {
+      console.log(err)
+    }
 
-  if(data.length){
-    res.end('Page under construction');
-  }
-  else {
-    res.end('list empty');
-  }
-});
+    if (data.length) {
+      res.end('Page under construction');
+    } else {
+      res.end('list empty');
+    }
+  });
 });
 router.get('/admin/classes/list', function(req, res, next) {
 
-Classes.find({},(err,data)=>{
-  if(err)
-  {
-    console.log(err)
-  }
+  Classes.find({}, (err, data) => {
+    if (err) {
+      console.log(err)
+    }
 
-  if(data.length){
-    res.end('Page under construction');
-  }
-  else {
-    res.end('list empty');
-  }
-});
+    if (data.length) {
+      res.end('Page under construction');
+    } else {
+      res.end('list empty');
+    }
+  });
 
 
 
@@ -92,33 +86,62 @@ router.get('/admin/home/success', function(req, res, next) {
 router.post('/admin/student/add', function(req, res, next) {
 
 
-let studentObj= new Student({
-  name:req.body.name,
-  age:req.body.dob,
-  sex:req.body.sex,
-  class:req.body.class,
-  role:'Student',
-  createdAt: new Date(),
-  updatedAt: new Date()
-});
-
-studentObj.save(function(err,data){
-  if(err)
-  {
-    console.log(err);
-  }
-  res.render('admin/home', {
-    header: true,
-    'mytag': 'Successfully added student '
+  let studentObj = new Student({
+    name: req.body.name,
+    age: req.body.dob,
+    sex: req.body.sex,
+    class: req.body.class,
+    role: 'Student',
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
+
+  studentObj.save(function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+    res.render('admin/home', {
+      header: true,
+      'mytag': 'Successfully added student '
+    });
+  })
 })
+
+router.post('/admin/class/add', function(req, res, next) {
+
+
+  let classObj = new Classes({
+    standard:req.body.standard,
+    noOfStudent:req.body.noOfStudent,
+    division:req.body.division,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  classObj.save(function(err, data) {
+    if (err) {
+      console.log(err);
+      res.render('admin/home', {
+        header: true,
+        'mytag': 'Unable to add class'
+      });
+    } else {
+      res.render('admin/home', {
+        header: true,
+        'mytag': 'Successfully added class '
+      });
+
+    }
+
+  })
 })
 
 router.post('/api/home', function(req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
   User.find({
-    username:username,password:'12345'
+    username: username,
+    password: '12345'
   }, (err, data) => {
     if (data.length) {
       res.render('admin/home', {
